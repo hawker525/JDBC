@@ -12,19 +12,10 @@ public class Main {
     private static final String PASSWORD = "vdab";
 
     public static void main(String[] args){
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);){
+            System.out.println("Connectie geopend");
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null){
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
